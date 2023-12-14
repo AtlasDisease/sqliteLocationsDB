@@ -24,3 +24,7 @@ def redefine_table(conn, cur,
     cur.execute("INSERT INTO {tablename} VALUES {get_table(temp_tablename)}")
     cur.execute("DROP TABLE {temp_tablename}")
     conn.commit()
+
+
+if __name__ == "__main__":
+    pass
