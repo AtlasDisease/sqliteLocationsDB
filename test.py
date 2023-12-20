@@ -18,7 +18,7 @@ def get_table(cur, tablename: str) -> tuple:
 def redefine_table(conn, cur,
                    tablename: str,
                    temp_tablename: str = "tmp",
-                   newFieldDefs):
+                   newFieldDefs = []):
     move_table(cur, tablename, temp_tablename)
     cur.execute("CREATE TABLE {tablename} ({newFieldDefs})")
     cur.execute("INSERT INTO {tablename} VALUES {get_table(temp_tablename)}")
@@ -27,4 +27,6 @@ def redefine_table(conn, cur,
 
 
 if __name__ == "__main__":
-    pass
+    conn = sql.connect("./myDB.db")
+    cur = conn.cursor()
+    print(cur.execute("SELECT * FROM counties").fetchall())
